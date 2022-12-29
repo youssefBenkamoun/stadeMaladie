@@ -1,5 +1,7 @@
 package com.example.stademaladie.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -33,11 +35,11 @@ public class Maladie {
     public String getNom() {
         return nom;
     }
-
+    @JsonIgnore
     public List<Patient> getPatients() {
         return patients;
     }
-
+    @JsonSetter
     public void setPatients(List<Patient> patients) {
         this.patients = patients;
     }
