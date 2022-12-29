@@ -23,6 +23,7 @@ public class Detection {
     public Detection() {
     }
 
+
     public Detection(int id, String photo, String code, boolean validatio, Date date, String description, Patient patient, Stade stade) {
         this.id = id;
         this.photo = photo;
