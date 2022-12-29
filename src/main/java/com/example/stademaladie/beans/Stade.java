@@ -1,5 +1,7 @@
 package com.example.stademaladie.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -46,7 +48,7 @@ public class Stade {
     public String getDescription() {
         return description;
     }
-
+    @JsonIgnore
     public Maladie getMaladie() {
         return maladie;
     }
@@ -68,7 +70,7 @@ public class Stade {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    @JsonSetter
     public void setMaladie(Maladie maladie) {
         this.maladie = maladie;
     }

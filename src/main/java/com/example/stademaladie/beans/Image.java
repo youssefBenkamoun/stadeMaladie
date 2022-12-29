@@ -1,5 +1,7 @@
 package com.example.stademaladie.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.persistence.*;
 
 @Entity
@@ -35,7 +37,7 @@ public class Image {
     public String getPhoto() {
         return photo;
     }
-
+    @JsonIgnore
     public Stade getStade() {
         return stade;
     }
@@ -51,7 +53,7 @@ public class Image {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-
+    @JsonSetter
     public void setStade(Stade stade) {
         this.stade = stade;
     }
