@@ -47,9 +47,7 @@ public class Stade {
         return description;
     }
 
-    public Maladie getMaladie() {
-        return maladie;
-    }
+
 
 
 

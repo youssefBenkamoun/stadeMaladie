@@ -3,13 +3,12 @@ package com.example.stademaladie.controllers;
 import com.example.stademaladie.beans.Patient;
 import com.example.stademaladie.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/patient")
 public class PatientController {
 
@@ -19,5 +18,10 @@ public class PatientController {
     @GetMapping("/all")
     public List<Patient> getAll(){
         return patientRepository.findAll();
+    }
+
+    @PostMapping("/get")
+    public Patient getById(@RequestParam int id){
+        return patientRepository.findById(id).get();
     }
 }

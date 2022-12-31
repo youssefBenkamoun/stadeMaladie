@@ -4,13 +4,12 @@ package com.example.stademaladie.controllers;
 import com.example.stademaladie.beans.Maladie;
 import com.example.stademaladie.repositories.MaladieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/maladie")
 public class MaladieController {
 
@@ -21,4 +20,5 @@ public class MaladieController {
     public List<Maladie> getAll(){
         return maladieRepository.findAll();
     }
+
 }

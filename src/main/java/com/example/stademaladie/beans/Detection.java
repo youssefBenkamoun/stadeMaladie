@@ -63,9 +63,6 @@ public class Detection {
         return description;
     }
 
-    public Patient getPatient() {
-        return patient;
-    }
     public void setId(int id) {
         this.id = id;
     }

@@ -2,7 +2,7 @@ package com.example.stademaladie.beans;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 @Entity
 public class Patient {
@@ -19,9 +19,15 @@ public class Patient {
     private String genre;
     private double poids;
     private double taille;
+
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String photo;
     @ManyToMany(mappedBy = "patients")
     private List<Maladie> maladies;
+
+    @OneToMany(mappedBy = "patient")
+    private List<Detection> detections;
 
 
     public Patient() {
@@ -136,5 +142,7 @@ public class Patient {
         this.photo = photo;
     }
 
-
+    public List<Detection> getDetections() {
+        return detections;
+    }
 }

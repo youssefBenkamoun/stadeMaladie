@@ -11,8 +11,12 @@ public class Maladie {
     private String code;
     private String nom;
     @ManyToMany
-    @JoinTable(name = "patientMaladie" , joinColumns = @JoinColumn(name = "patient_id"),inverseJoinColumns = @JoinColumn(name = "maladie_id"))
+    @JoinTable(name = "patientMaladie" , joinColumns = @JoinColumn(name = "maladie_id"),inverseJoinColumns = @JoinColumn(name = "patient_id"))
     private List<Patient> patients;
+
+    @OneToMany(mappedBy = "maladie")
+    private List<Stade> stades;
+
     public Maladie() {
     }
 
@@ -34,14 +38,6 @@ public class Maladie {
         return nom;
     }
 
-    public List<Patient> getPatients() {
-        return patients;
-    }
-
-    public void setPatients(List<Patient> patients) {
-        this.patients = patients;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -52,5 +48,13 @@ public class Maladie {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public List<Stade> getStades() {
+        return stades;
+    }
+
+    public void setStades(List<Stade> stades) {
+        this.stades = stades;
     }
 }
