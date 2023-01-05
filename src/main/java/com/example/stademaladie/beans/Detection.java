@@ -1,5 +1,6 @@
 package com.example.stademaladie.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -96,5 +97,8 @@ public class Detection {
         this.patient = patient;
     }
 
-
+    @JsonIgnore
+    public Patient getPatient() {
+        return patient;
+    }
 }
