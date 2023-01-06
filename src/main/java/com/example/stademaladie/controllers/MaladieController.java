@@ -21,4 +21,9 @@ public class MaladieController {
         return maladieRepository.findAll();
     }
 
+    @PostMapping("/add")
+    public void addMaladie(@RequestBody Maladie maladie){
+        maladieRepository.save(maladie);
+    }
+
 }

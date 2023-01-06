@@ -11,8 +11,6 @@ public class Medcin extends User{
 
     private String licence;
 
-    @ManyToMany(mappedBy = "medcins")
-    private List<Role> roles;
 
 
     public Medcin(String nom, String prenom, String gender, String number, String email, String password, String licence) {
