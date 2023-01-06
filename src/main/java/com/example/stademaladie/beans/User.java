@@ -3,7 +3,9 @@ package com.example.stademaladie.beans;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -21,8 +23,29 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToMany(mappedBy = "users")
-    private List<Role> roles;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(  name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User(String nom, String email, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.gender = gender;
+        this.number = number;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
 
     public Integer getId() {
         return id;

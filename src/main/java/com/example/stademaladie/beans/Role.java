@@ -1,32 +1,26 @@
 package com.example.stademaladie.beans;
-
 import jakarta.persistence.*;
 
 import java.util.List;
 
+
 @Entity
-@Table(name = "role")
+@Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id", nullable = false)
     private Integer id;
 
-    private String nom;
-
-    private String code;
-
-    public Role(String nom, String code) {
-        this.nom = nom;
-        this.code = code;
-    }
-
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private ERole name;
     public Role() {
+
     }
 
-    @ManyToMany
-    @JoinTable(name = "userRole" , joinColumns = @JoinColumn(name = "role_id"),inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> users;
+    public Role(ERole name) {
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;
@@ -36,19 +30,11 @@ public class Role {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public ERole getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
+    public void setName(ERole name) {
+        this.name = name;
     }
 }
