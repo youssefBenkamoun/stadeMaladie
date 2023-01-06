@@ -1,5 +1,7 @@
 package com.example.stademaladie.beans;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -12,7 +14,8 @@ public class Patient {
     private String code;
     private String nom;
     private String prenom;
-    private Date dateNaissance;
+
+    private String dateNaissance;
     private String adresse;
     private String telephone;
 
@@ -23,7 +26,8 @@ public class Patient {
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private String photo;
-    @ManyToMany(mappedBy = "patients")
+    @ManyToMany
+    @JoinTable(name = "patientMaladie" , joinColumns = @JoinColumn(name = "patient_id"),inverseJoinColumns = @JoinColumn(name = "maladie_id"))
     private List<Maladie> maladies;
 
     @OneToMany(mappedBy = "patient")
@@ -33,7 +37,7 @@ public class Patient {
     public Patient() {
     }
 
-    public Patient(int id, String code, String nom, String prenom, Date dateNaissance, String adresse, String telephone, double poids, double taille, String photo) {
+    public Patient(int id, String code, String nom, String prenom, String dateNaissance, String adresse, String telephone, double poids, double taille, String photo) {
         this.id = id;
         this.code = code;
         this.nom = nom;
@@ -70,7 +74,7 @@ public class Patient {
         return prenom;
     }
 
-    public Date getDateNaissance() {
+    public String getDateNaissance() {
         return dateNaissance;
     }
 
@@ -94,10 +98,12 @@ public class Patient {
         return photo;
     }
 
+    @JsonIgnore
     public List<Maladie> getMaladies() {
         return maladies;
     }
 
+    @JsonSetter
     public void setMaladies(List<Maladie> maladies) {
         this.maladies = maladies;
     }
@@ -118,7 +124,7 @@ public class Patient {
         this.prenom = prenom;
     }
 
-    public void setDateNaissance(Date dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -142,6 +148,7 @@ public class Patient {
         this.photo = photo;
     }
 
+    @JsonIgnore
     public List<Detection> getDetections() {
         return detections;
     }
