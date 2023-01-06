@@ -22,10 +22,8 @@ public class MaladieController {
     PatientRepository patientRepository;
 
     @GetMapping("/all")
-    public List<Maladie> getAll(@RequestParam int patient){
-        Patient patient1 = patientRepository.findById(patient).get();
-        System.out.println(patient1.getMaladies());
-        return patient1.getMaladies();
+    public List<Maladie> getAll(){
+        return maladieRepository.findAll();
     }
 
     @PostMapping("/add")
