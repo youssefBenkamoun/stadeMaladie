@@ -26,6 +26,12 @@ public class MaladieController {
         return maladieRepository.findAll();
     }
 
+    @PostMapping("/get")
+    public Maladie getById(@RequestParam int id){
+        System.out.println(maladieRepository.findById(id).get().getCode());
+        return maladieRepository.findById(id).get();
+    }
+
     @PostMapping("/add")
     public void addMaladie(@RequestBody Maladie maladie){
         maladieRepository.save(maladie);

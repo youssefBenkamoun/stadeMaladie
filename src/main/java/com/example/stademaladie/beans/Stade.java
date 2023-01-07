@@ -20,6 +20,9 @@ public class Stade {
     @OneToMany(mappedBy = "stade")
     private List<Detection> detection;
 
+    @OneToMany(mappedBy = "stade")
+    private List<Image> images;
+
 
     public Stade() {
     }
@@ -80,5 +83,7 @@ public class Stade {
         this.maladie = maladie;
     }
 
-
+    public List<Image> getImages() {
+        return images;
+    }
 }

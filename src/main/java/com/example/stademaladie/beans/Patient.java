@@ -98,7 +98,6 @@ public class Patient {
         return photo;
     }
 
-    @JsonIgnore
     public List<Maladie> getMaladies() {
         return maladies;
     }
@@ -148,7 +147,6 @@ public class Patient {
         this.photo = photo;
     }
 
-    @JsonIgnore
     public List<Detection> getDetections() {
         return detections;
     }
