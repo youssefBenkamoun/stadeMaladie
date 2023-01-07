@@ -22,8 +22,13 @@ public class StadeController {
     }
 
     @PostMapping("/stades/add")
-    public void addStage(@RequestBody Stade stade){
-        stadeRepository.save(stade);
+    public Stade addStage(@RequestBody Stade stade){
+        return stadeRepository.save(stade);
+    }
+
+    @PostMapping("/stades/get")
+    public Stade getStage(@RequestParam int id){
+        return stadeRepository.findById(id).get();
     }
 
     @GetMapping("/stades/all")
