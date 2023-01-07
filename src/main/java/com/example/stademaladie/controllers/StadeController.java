@@ -28,7 +28,7 @@ public class StadeController {
         return stadeService.findByMaladieId(id);
     }
 
-    @GetMapping("/stade/byMaladiee")
+    @GetMapping("/byMaladiee")
     public List<Stade> getAStades(@RequestParam("id") int id){
         Maladie maladie = maladieRepository.findById(id).get();
         System.out.println(maladie.getStades());
