@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin()
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -78,7 +78,7 @@ public class AuthController {
           .body(new MessageResponse("Error: Email is already in use!"));
     }
     // Create new user's account
-    User user = new User(signUpRequest.getUsername(),
+    User user = new User(signUpRequest.getNom(),signUpRequest.getPrenom(),
                signUpRequest.getEmail(),
                encoder.encode(signUpRequest.getPassword()));
 
@@ -86,7 +86,7 @@ public class AuthController {
     Set<Role> roles = new HashSet<>();
 
     if (strRoles == null) {
-      Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+      Role userRole = roleRepository.findByName(ERole.ROLE_MEDCIN)
           .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
       roles.add(userRole);
     } else {
@@ -98,13 +98,9 @@ public class AuthController {
           roles.add(adminRole);
 
           break;
-        case "mod":
-          Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-              .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-          roles.add(modRole);
-          break;
+
         default:
-          Role userRole = roleRepository.findByName(ERole.ROLE_USER)
+          Role userRole = roleRepository.findByName(ERole.ROLE_MEDCIN)
               .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
           roles.add(userRole);
         }

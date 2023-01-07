@@ -5,6 +5,7 @@ import com.example.stademaladie.beans.Maladie;
 import com.example.stademaladie.beans.Patient;
 import com.example.stademaladie.repositories.MaladieRepository;
 import com.example.stademaladie.repositories.PatientRepository;
+import com.example.stademaladie.service.MaladieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,8 @@ public class MaladieController {
 
     @Autowired
     MaladieRepository maladieRepository;
+    @Autowired
+    MaladieService maladieService;
 
     @Autowired
     PatientRepository patientRepository;
@@ -24,6 +27,11 @@ public class MaladieController {
     @GetMapping("/all")
     public List<Maladie> getAll(){
         return maladieRepository.findAll();
+    }
+    @GetMapping("/{id}")
+    public List<Maladie> getAllByPatient(@PathVariable int id){
+        Patient patient = patientRepository.findById(id).get();
+        return maladieService.getAllByPatient(patient);
     }
 
     @PostMapping("/get")

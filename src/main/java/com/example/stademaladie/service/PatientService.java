@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Component
 public class PatientService {
@@ -17,6 +19,7 @@ public class PatientService {
     public Patient getPatientById(int id){
         return patientRepository.findById(id).get();
     }
+
 
     public void addMaladie(Patient patient){
         patientRepository.save(patient);

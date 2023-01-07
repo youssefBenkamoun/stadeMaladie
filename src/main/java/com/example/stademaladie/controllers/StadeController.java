@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@RequestMapping("/stade")
 @CrossOrigin
 @RestController
 public class StadeController {
@@ -15,7 +16,7 @@ public class StadeController {
     @Autowired
     StadeRepository stadeRepository;
 
-    @GetMapping("/maladie/{id}")
+    @GetMapping("/{id}")
     public List<Stade> findAllByMaladieId(@PathVariable(value = "id") int id){
         return stadeService.findByMaladieId(id);
     }
