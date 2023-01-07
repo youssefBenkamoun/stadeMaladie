@@ -1,8 +1,10 @@
 package com.example.stademaladie.controllers;
 
 import com.example.stademaladie.beans.Detection;
+import com.example.stademaladie.beans.Image;
 import com.example.stademaladie.beans.Maladie;
 import com.example.stademaladie.beans.Patient;
+import com.example.stademaladie.repositories.ImageRepository;
 import com.example.stademaladie.repositories.PatientRepository;
 import com.example.stademaladie.service.DetectionService;
 import com.example.stademaladie.service.PatientService;
@@ -30,21 +32,29 @@ public class DetectionController {
     PatientRepository patientRepository;
 
     @Autowired
+    ImageRepository imageRepository;
+
+    @Autowired
     PatientService patientService;
 
-    @PostMapping("/add")
+    @PostMapping("/adda")
     public Detection addDetection(@RequestBody HashMap map) {
         final ObjectMapper mapper = new ObjectMapper();
         final Detection detection = mapper.convertValue(map.get(("detection")), Detection.class);
         final Maladie maladie = mapper.convertValue(map.get("maladie"), Maladie.class);
-        System.out.println(detection);
+        detection.setDate(new Date());
+
+        imageRepository.save(new Image((detection.getPhoto()).substring((detection.getPhoto()).length() - 1),detection.getPhoto(),detection.getStade()));
+
+
+        /*System.out.println(detection);
         Patient p = patientService.getPatientById(detection.getPatient().getId());
         List<Maladie> list = p.getMaladies();
-        detection.setDate(new Date());
+
         list.add(maladie);
         System.out.println(list);
         p.setMaladies(list);
-        patientRepository.save(p);
+        patientRepository.save(p);*/
         return detectionService.addDetection(detection);
     }
 }

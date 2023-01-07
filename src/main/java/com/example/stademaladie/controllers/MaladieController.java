@@ -24,9 +24,12 @@ public class MaladieController {
     @Autowired
     PatientRepository patientRepository;
 
-    @GetMapping("/all")
-    public List<Maladie> getAll(){
-        return maladieRepository.findAll();
+
+    @GetMapping("/alla")
+    public List<Maladie> getaAll(@RequestParam int patient){
+        Patient patient1 = patientRepository.findById(patient).get();
+        System.out.println(patient1.getMaladies());
+        return patient1.getMaladies();
     }
     @GetMapping("/{id}")
     public List<Maladie> getAllByPatient(@PathVariable int id){

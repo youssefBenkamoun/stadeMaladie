@@ -19,6 +19,13 @@ public class Image {
     public Image() {
     }
 
+    public Image(String code, String photo, Stade stade) {
+
+        this.code = code;
+        this.photo = photo;
+        this.stade = stade;
+    }
+
     public Image(int id, String code, String photo, Stade stade) {
         this.id = id;
         this.code = code;

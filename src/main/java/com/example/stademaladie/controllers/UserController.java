@@ -16,8 +16,8 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/login")
-    public String gg(@RequestParam("email") String email, @RequestParam("password")String password){
+    @GetMapping("/logina")
+    public String gbg(@RequestParam("email") String email, @RequestParam("password")String password){
         List<User> tab = userRepository.findAll();
         String alo="nono";
         for(User user: tab){
